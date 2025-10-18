@@ -1,0 +1,378 @@
+﻿@page "/dashboard"
+@using PicasYFamas.BlazorApp.Components.Models
+@using PicasYFamas.BlazorApp.Components.Services
+@inject IGameApiService ApiService
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Dashboard - Picas y Famas</PageTitle>
+
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4">
+                <i class="bi bi-graph-up-arrow me-3"></i>Dashboard de Estadísticas
+            </h1>
+            <p class="lead text-muted">Análisis de datos del juego Picas y Famas</p>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <p class="mt-3">Cargando datos del dashboard...</p>
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            @errorMessage
+        </div>
+    }
+    else
+    {
+        <!-- KPIs -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-card-primary">
+                    <div class="card-body">
+                        <div class="stat-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h3 class="stat-value">@dashboardData.Stats.TotalPlayers</h3>
+                        <p class="stat-label">Total Jugadores</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-card-success">
+                    <div class="card-body">
+                        <div class="stat-icon">
+                            <i class="bi bi-controller"></i>
+                        </div>
+                        <h3 class="stat-value">@dashboardData.Stats.TotalGames</h3>
+                        <p class="stat-label">Total Juegos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-card-warning">
+                    <div class="card-body">
+                        <div class="stat-icon">
+                            <i class="bi bi-trophy-fill"></i>
+                        </div>
+                        <h3 class="stat-value">@dashboardData.Stats.GamesFinished</h3>
+                        <p class="stat-label">Juegos Completados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-card-info">
+                    <div class="card-body">
+                        <div class="stat-icon">
+                            <i class="bi bi-cursor-fill"></i>
+                        </div>
+                        <h3 class="stat-value">@dashboardData.Stats.AverageAttempts.ToString("F1")</h3>
+                        <p class="stat-label">Promedio Intentos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico 1: Usuarios Registrados por Día -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-calendar3 me-2"></i>
+                            Usuarios Registrados por Día
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="usersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico 2 y 3 -->
+        <div class="row mb-4">
+            <div class="col-lg-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-star-fill me-2"></i>
+                            Top 5 Mejores Juegos (Menos Intentos)
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="topGamesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-pie-chart-fill me-2"></i>
+                            Distribución de Intentos
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla: Intentos por Juego -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-table me-2"></i>
+                            Cantidad de Intentos por Juego
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID Juego</th>
+                                        <th>Jugador</th>
+                                        <th>Intentos</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var game in dashboardData.AttemptsPerGame)
+                                    {
+                                        <tr>
+                                            <td><strong>#@game.GameId</strong></td>
+                                            <td>@game.PlayerName</td>
+                                            <td>
+                                                <span class="badge @GetAttemptBadgeClass(game.Attempts)">
+                                                    @game.Attempts intentos
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @if (game.Status == "Finalizado")
+                                                {
+                                                    <span class="badge bg-success">
+                                                        <i class="bi bi-check-circle-fill"></i> Finalizado
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning">
+                                                        <i class="bi bi-hourglass-split"></i> Activo
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>@game.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .stat-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+    .stat-card-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .stat-card-success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        color: white;
+    }
+
+    .stat-card-warning {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+    }
+
+    .stat-card-info {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+
+    .stat-icon {
+        font-size: 2.5rem;
+        opacity: 0.3;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        margin: 0;
+        opacity: 0.9;
+    }
+</style>
+
+@code {
+    private bool isLoading = true;
+    private string errorMessage;
+    private DashboardData dashboardData = new DashboardData
+    {
+        Stats = new DashboardStats(),
+        UsersPerDay = new List<UserRegistrationByDay>(),
+        Top5Games = new List<TopGame>(),
+        AttemptsPerGame = new List<GameAttempts>()
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadDashboardData();
+        }
+    }
+
+    private async Task LoadDashboardData()
+    {
+        try
+        {
+            isLoading = true;
+
+            dashboardData = await ApiService.GetDashboardDataAsync();
+
+            errorMessage = null;
+            StateHasChanged();
+
+            // Renderizar gráficos después de cargar los datos
+            await RenderCharts();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar datos: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task RenderCharts()
+    {
+        // Preparar datos para gráfico de usuarios
+        var usersData = new
+        {
+            labels = dashboardData.UsersPerDay.Select(u => u.Date).ToArray(),
+            datasets = new[]
+            {
+                new
+                {
+                    label = "Usuarios Registrados",
+                    data = dashboardData.UsersPerDay.Select(u => u.Count).ToArray(),
+                    backgroundColor = "rgba(102, 126, 234, 0.6)",
+                    borderColor = "rgb(102, 126, 234)",
+                    borderWidth = 2,
+                    fill = true
+                }
+            }
+        };
+
+        // Preparar datos para top 5 juegos
+        var topGamesData = new
+        {
+            labels = dashboardData.Top5Games.Select(g => $"Juego #{g.GameId} - {g.PlayerName}").ToArray(),
+            datasets = new[]
+            {
+                new
+                {
+                    label = "Intentos",
+                    data = dashboardData.Top5Games.Select(g => g.Attempts).ToArray(),
+                    backgroundColor = new[]
+                    {
+                        "rgba(17, 153, 142, 0.8)",
+                        "rgba(56, 239, 125, 0.8)",
+                        "rgba(102, 126, 234, 0.8)",
+                        "rgba(240, 147, 251, 0.8)",
+                        "rgba(245, 87, 108, 0.8)"
+                    }
+                }
+            }
+        };
+
+        // Preparar datos para distribución
+        var attemptsGroups = dashboardData.AttemptsPerGame
+            .Where(g => g.Status == "Finalizado")
+            .GroupBy(g =>
+            {
+                if (g.Attempts <= 5) return "1-5 intentos";
+                if (g.Attempts <= 10) return "6-10 intentos";
+                if (g.Attempts <= 15) return "11-15 intentos";
+                return "Más de 15";
+            })
+            .Select(g => new { Range = g.Key, Count = g.Count() })
+            .ToList();
+
+        var distributionData = new
+        {
+            labels = attemptsGroups.Select(g => g.Range).ToArray(),
+            datasets = new[]
+            {
+                new
+                {
+                    data = attemptsGroups.Select(g => g.Count).ToArray(),
+                    backgroundColor = new[]
+                    {
+                        "rgba(17, 153, 142, 0.8)",
+                        "rgba(102, 126, 234, 0.8)",
+                        "rgba(240, 147, 251, 0.8)",
+                        "rgba(245, 87, 108, 0.8)"
+                    }
+                }
+            }
+        };
+
+        await JSRuntime.InvokeVoidAsync("renderCharts", usersData, topGamesData, distributionData);
+    }
+
+    private string GetAttemptBadgeClass(int attempts)
+    {
+        if (attempts <= 5) return "bg-success";
+        if (attempts <= 10) return "bg-primary";
+        if (attempts <= 15) return "bg-warning";
+        return "bg-danger";
+    }
+}

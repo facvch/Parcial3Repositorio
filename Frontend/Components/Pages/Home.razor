@@ -1,0 +1,135 @@
+﻿@page "/"
+
+<PageTitle>Picas y Famas - Inicio</PageTitle>
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-3 fw-bold text-primary mb-4">
+                    <i class="bi bi-puzzle-fill"></i> Picas y Famas
+                </h1>
+                <p class="lead mb-5">
+                    Pon a prueba tu lógica y deducción. Adivina el número secreto de 4 dígitos
+                    en la menor cantidad de intentos posible.
+                </p>
+
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a href="/register" class="btn btn-success btn-lg px-5 py-3" style="border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <i class="bi bi-person-plus-fill me-2"></i>
+                        Nuevo Jugador
+                    </a>
+                    <a href="/login" class="btn btn-primary btn-lg px-5 py-3" style="border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        Iniciar Sesión
+                    </a>
+                    <a href="/game" class="btn btn-outline-success btn-lg px-5 py-3" style="border-radius: 15px;">
+                        <i class="bi bi-play-fill me-2"></i>
+                        Jugar Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-5">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-trophy-fill"></i>
+                    </div>
+                    <h3>Desafío Mental</h3>
+                    <p>Ejercita tu mente mientras te diviertes intentando descifrar el código secreto.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h3>Rastrea tu Progreso</h3>
+                    <p>Consulta tus estadísticas y compara tu desempeño con otros jugadores.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <h3>Pistas Inteligentes</h3>
+                    <p>Recibe famas y picas como pistas para guiarte hacia la respuesta correcta.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="info-box">
+                    <h2 class="mb-4"><i class="bi bi-question-circle-fill me-2"></i>¿Cómo se juega?</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><i class="bi bi-1-circle-fill text-primary me-2"></i>Regístrate</h5>
+                            <p>Crea tu perfil de jugador con tu nombre y edad.</p>
+
+                            <h5 class="mt-3"><i class="bi bi-2-circle-fill text-primary me-2"></i>Inicia un juego</h5>
+                            <p>El sistema generará un número secreto de 4 dígitos sin repetir.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5><i class="bi bi-3-circle-fill text-primary me-2"></i>Adivina el número</h5>
+                            <p>Ingresa tu intento y recibe pistas:</p>
+                            <ul>
+                                <li><strong>Famas:</strong> Dígitos correctos en la posición correcta</li>
+                                <li><strong>Picas:</strong> Dígitos correctos en posición incorrecta</li>
+                            </ul>
+
+                            <h5 class="mt-3"><i class="bi bi-4-circle-fill text-primary me-2"></i>¡Gana!</h5>
+                            <p>Adivina el número completo en la menor cantidad de intentos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        min-height: 100vh;
+        padding: 60px 0;
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
+
+    .feature-card {
+        text-align: center;
+        padding: 30px;
+        border-radius: 15px;
+        background: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+    .feature-icon {
+        font-size: 3rem;
+        color: #11998e;
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+        .info-box h5 {
+            color: white;
+            font-weight: 600;
+        }
+</style>

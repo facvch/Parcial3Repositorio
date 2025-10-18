@@ -1,0 +1,131 @@
+﻿@page "/register"
+@using PicasYFamas.BlazorApp.Components.Models
+@using PicasYFamas.BlazorApp.Components.Services
+@inject IGameApiService ApiService
+@inject NavigationManager NavManager
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Registro - Picas y Famas</PageTitle>
+
+<div class="container py-5" style="min-height: 100vh; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="border-radius: 20px; overflow: hidden;">
+                <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 2rem;">
+                    <h2 class="mb-0">
+                        <i class="bi bi-person-plus-fill"></i> Registro de Jugador
+                    </h2>
+                    <p class="mb-0 mt-2" style="opacity: 0.9;">Completa tus datos para comenzar a jugar</p>
+                </div>
+
+                <div class="card-body p-5">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            @errorMessage
+                            <button type="button" class="btn-close" @onclick="() => errorMessage = null"></button>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(successMessage))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            @successMessage
+                            <button type="button" class="btn-close" @onclick="() => successMessage = null"></button>
+                        </div>
+                    }
+
+                    <EditForm Model="@request" OnValidSubmit="@HandleRegister" FormName="RegisterForm">
+                        <DataAnnotationsValidator />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="bi bi-person-fill me-1 text-success"></i> Nombre
+                            </label>
+                            <InputText class="form-control form-control-lg" @bind-Value="request.FirstName"
+                                       placeholder="Tu nombre" style="border-radius: 10px;" />
+                            <ValidationMessage For="@(() => request.FirstName)" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="bi bi-person-badge-fill me-1 text-success"></i> Apellido
+                            </label>
+                            <InputText class="form-control form-control-lg" @bind-Value="request.LastName"
+                                       placeholder="Tu apellido" style="border-radius: 10px;" />
+                            <ValidationMessage For="@(() => request.LastName)" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="bi bi-calendar-fill me-1 text-success"></i> Edad
+                            </label>
+                            <InputNumber class="form-control form-control-lg" @bind-Value="request.Age"
+                                         placeholder="Tu edad" min="1" max="120" style="border-radius: 10px;" />
+                            <ValidationMessage For="@(() => request.Age)" />
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg" disabled="@isLoading"
+                                    style="border-radius: 10px; padding: 15px;">
+                                @if (isLoading)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                    <span>Registrando...</span>
+                                }
+                                else
+                                {
+                                    <i class="bi bi-check-lg me-2"></i>
+                                    <span>Registrarse</span>
+                                }
+                            </button>
+
+                            <a href="/" class="btn btn-outline-secondary" style="border-radius: 10px; padding: 15px;">
+                                <i class="bi bi-arrow-left me-2"></i> Volver al Inicio
+                            </a>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegisterPlayerRequest request = new();
+    private bool isLoading = false;
+    private string errorMessage;
+    private string successMessage;
+
+    private async Task HandleRegister()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+            successMessage = null;
+
+            var response = await ApiService.RegisterPlayerAsync(request);
+
+            // Guardar PlayerId en LocalStorage
+            await LocalStorage.SetItemAsync("playerId", response.PlayerId);
+            await LocalStorage.SetItemAsync("playerName", $"{request.FirstName} {request.LastName}");
+
+            successMessage = $"¡Registro exitoso! Tu ID de jugador es: {response.PlayerId}";
+
+            // Redirigir al juego después de 2 segundos
+            await Task.Delay(2000);
+            NavManager.NavigateTo("/game");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

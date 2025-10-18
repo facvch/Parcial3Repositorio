@@ -1,0 +1,105 @@
+﻿@page "/login"
+@using PicasYFamas.BlazorApp.Components.Models
+@using PicasYFamas.BlazorApp.Components.Services
+@inject NavigationManager NavManager
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Iniciar Sesión - Picas y Famas</PageTitle>
+
+<div class="container py-5" style="min-height: 100vh; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg" style="border-radius: 20px; overflow: hidden;">
+                <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 2rem;">
+                    <h2 class="mb-0">
+                        <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                    </h2>
+                    <p class="mb-0 mt-2" style="opacity: 0.9;">Ingresa con tu ID de jugador</p>
+                </div>
+
+                <div class="card-body p-5">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            @errorMessage
+                            <button type="button" class="btn-close" @onclick="() => errorMessage = null"></button>
+                        </div>
+                    }
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-person-badge-fill me-1 text-success"></i> ID de Jugador
+                        </label>
+                        <input type="number" class="form-control form-control-lg" @bind="playerId"
+                               placeholder="Ej: 1" style="border-radius: 10px;" min="1" />
+                        <small class="text-muted">Ingresa el ID que recibiste al registrarte</small>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-primary btn-lg" @onclick="HandleLogin" disabled="@isLoading"
+                                style="border-radius: 10px; padding: 15px;">
+                            @if (isLoading)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                                <span>Iniciando sesión...</span>
+                            }
+                            else
+                            {
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                <span>Iniciar Sesión</span>
+                            }
+                        </button>
+
+                        <hr class="my-3" />
+
+                        <p class="text-center text-muted mb-2">¿No tienes cuenta?</p>
+                        <a href="/register" class="btn btn-outline-success" style="border-radius: 10px; padding: 15px;">
+                            <i class="bi bi-person-plus-fill me-2"></i> Registrarse
+                        </a>
+
+                        <a href="/" class="btn btn-outline-secondary" style="border-radius: 10px; padding: 15px;">
+                            <i class="bi bi-arrow-left me-2"></i> Volver al Inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int playerId = 0;
+    private bool isLoading = false;
+    private string errorMessage;
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            if (playerId <= 0)
+            {
+                errorMessage = "Por favor ingresa un ID válido";
+                return;
+            }
+
+            // Guardar en LocalStorage
+            await LocalStorage.SetItemAsync("playerId", playerId);
+            await LocalStorage.SetItemAsync("playerName", $"Jugador {playerId}");
+
+            // Redirigir al juego
+            NavManager.NavigateTo("/game");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

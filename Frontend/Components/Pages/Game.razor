@@ -1,0 +1,353 @@
+﻿@page "/game"
+@using PicasYFamas.BlazorApp.Components.Models
+@using PicasYFamas.BlazorApp.Components.Services
+@inject IGameApiService ApiService
+@inject NavigationManager NavManager
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Jugar - Picas y Famas</PageTitle>
+
+<div class="container py-4">
+    @if (playerId == 0)
+    {
+        <div class="row justify-content-center" style="min-height: 80vh; align-items: center;">
+            <div class="col-md-6">
+                <div class="card shadow-lg" style="border-radius: 20px; overflow: hidden;">
+                    <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 2rem;">
+                        <h2 class="mb-0">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Acceso Restringido
+                        </h2>
+                    </div>
+                    <div class="card-body p-5 text-center">
+                        <p class="lead mb-4">Debes iniciar sesión para poder jugar</p>
+                        <div class="d-grid gap-2">
+                            <a href="/login" class="btn btn-primary btn-lg" style="border-radius: 10px; padding: 15px;">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
+                            </a>
+                            <a href="/register" class="btn btn-success btn-lg" style="border-radius: 10px; padding: 15px;">
+                                <i class="bi bi-person-plus-fill me-2"></i> Registrarse
+                            </a>
+                            <a href="/" class="btn btn-outline-secondary" style="border-radius: 10px; padding: 15px;">
+                                <i class="bi bi-house-fill me-2"></i> Volver al Inicio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (gameId == 0)
+    {
+        <!-- Iniciar Juego -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5 text-center">
+                        <h2 class="mb-4">
+                            <i class="bi bi-play-circle-fill text-success"></i> Iniciar Nuevo Juego
+                        </h2>
+                        <p class="lead">¡Hola, @playerName!</p>
+                        <p>¿Listo para poner a prueba tu lógica?</p>
+
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <div class="alert alert-danger">@errorMessage</div>
+                        }
+
+                        <button class="btn btn-success btn-lg mt-3" @onclick="StartGame" disabled="@isLoading">
+                            @if (isLoading)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            else
+                            {
+                                <i class="bi bi-play-fill me-2"></i>
+                            }
+                            Comenzar Juego
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- Juego Activo -->
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card shadow-lg mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">
+                                <i class="bi bi-controller"></i> Juego #@gameId
+                            </h4>
+                            <span class="badge bg-light text-dark">
+                                <i class="bi bi-person-fill"></i> @playerName
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4">
+                        @if (gameWon)
+                        {
+                            <div class="alert alert-success text-center">
+                                <h3><i class="bi bi-trophy-fill"></i> ¡Felicidades!</h3>
+                                <p class="mb-0">Has adivinado el número en <strong>@attempts.Count</strong> intentos.</p>
+                                <button class="btn btn-primary mt-3" @onclick="ResetGame">
+                                    <i class="bi bi-arrow-repeat me-2"></i> Jugar de Nuevo
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            @if (!string.IsNullOrEmpty(errorMessage))
+                            {
+                                <div class="alert alert-danger">@errorMessage</div>
+                            }
+
+                            <div class="guess-input-section">
+                                <h5 class="text-center mb-3">Ingresa tu intento (4 dígitos sin repetir)</h5>
+
+                                <div class="input-group input-group-lg mb-3">
+                                    <input type="text" class="form-control text-center"
+                                           @bind="currentGuess"
+                                           @bind:event="oninput"
+                                           maxlength="4"
+                                           placeholder="1234"
+                                           @onkeypress="HandleKeyPress" />
+                                    <button class="btn btn-primary" @onclick="MakeGuess" disabled="@(isLoading || currentGuess.Length != 4)">
+                                        @if (isLoading)
+                                        {
+                                            <span class="spinner-border spinner-border-sm"></span>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-send-fill"></i>
+                                        }
+                                        Enviar
+                                    </button>
+                                </div>
+
+                                <div class="text-center">
+                                    <small class="text-muted">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Presiona Enter para enviar
+                                    </small>
+                                </div>
+                            </div>
+                        }
+
+                        @if (attempts.Any())
+                        {
+                            <hr class="my-4" />
+                            <h5 class="mb-3">
+                                <i class="bi bi-clock-history me-2"></i>
+                                Historial de Intentos (@attempts.Count)
+                            </h5>
+
+                            <div class="attempts-list">
+                                @foreach (var attempt in attempts.OrderByDescending(a => a.Order))
+                                {
+                                    <div class="attempt-item @(attempt.Famas == 4 ? "winning-attempt" : "")">
+                                        <div class="attempt-number">
+                                            <span class="badge bg-secondary">#@attempt.Order</span>
+                                            <strong class="ms-2">@attempt.Number</strong>
+                                        </div>
+                                        <div class="attempt-result">
+                                            <span class="badge bg-success me-2">
+                                                <i class="bi bi-star-fill"></i> @attempt.Famas Famas
+                                            </span>
+                                            <span class="badge bg-warning">
+                                                <i class="bi bi-dash-circle-fill"></i> @attempt.Picas Picas
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="attempt-message">
+                                        <small class="text-muted">@attempt.Message</small>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .guess-input-section {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+    }
+
+        .guess-input-section input {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 10px;
+        }
+
+    .attempts-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .attempt-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 10px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+        .attempt-item:hover {
+            transform: translateX(5px);
+        }
+
+    .winning-attempt {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        color: white;
+    }
+
+        .winning-attempt .badge {
+            background: white !important;
+            color: #11998e !important;
+        }
+
+    .attempt-message {
+        padding: 0 15px 15px 15px;
+        margin-top: -10px;
+    }
+</style>
+
+@code {
+    private int playerId = 0;
+    private string playerName = "";
+    private int gameId = 0;
+    private string currentGuess = "";
+    private bool isLoading = false;
+    private bool gameWon = false;
+    private string errorMessage;
+    private List<AttemptDisplay> attempts = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            playerId = await LocalStorage.GetItemAsync<int>("playerId");
+            playerName = await LocalStorage.GetItemAsync<string>("playerName") ?? "Jugador";
+            StateHasChanged();
+        }
+    }
+
+    private async Task StartGame()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            var request = new StartGameRequest { PlayerId = playerId };
+            var response = await ApiService.StartGameAsync(request);
+
+            gameId = response.GameId;
+            attempts.Clear();
+            gameWon = false;
+            currentGuess = "";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task MakeGuess()
+    {
+        if (currentGuess.Length != 4 || !IsValidNumber(currentGuess))
+        {
+            errorMessage = "Debe ser un número de 4 dígitos sin repetir";
+            return;
+        }
+
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            var request = new GuessNumberRequest
+            {
+                GameId = gameId,
+                AttemptedNumber = currentGuess
+            };
+
+            var response = await ApiService.GuessNumberAsync(request);
+
+            attempts.Add(new AttemptDisplay
+            {
+                Order = attempts.Count + 1,
+                Number = currentGuess,
+                Famas = response.Famas ?? 0,
+                Picas = response.Picas ?? 0,
+                Message = response.Message
+            });
+
+            if (response.Famas == 4)
+            {
+                gameWon = true;
+            }
+
+            currentGuess = "";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private bool IsValidNumber(string number)
+    {
+        if (number.Length != 4) return false;
+        if (!number.All(char.IsDigit)) return false;
+        return number.Distinct().Count() == 4;
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && currentGuess.Length == 4)
+        {
+            await MakeGuess();
+        }
+    }
+
+    private void ResetGame()
+    {
+        gameId = 0;
+        currentGuess = "";
+        attempts.Clear();
+        gameWon = false;
+        errorMessage = null;
+    }
+
+    private class AttemptDisplay
+    {
+        public int Order { get; set; }
+        public string Number { get; set; }
+        public int Famas { get; set; }
+        public int Picas { get; set; }
+        public string Message { get; set; }
+    }
+}
