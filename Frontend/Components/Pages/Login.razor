@@ -1,4 +1,5 @@
 ﻿@page "/login"
+@rendermode InteractiveServer
 @using PicasYFamas.BlazorApp.Components.Models
 @using PicasYFamas.BlazorApp.Components.Services
 @inject NavigationManager NavManager
@@ -72,9 +73,25 @@
     private int playerId = 0;
     private bool isLoading = false;
     private string errorMessage;
+    private bool isInitialized = false;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isInitialized = true;
+            StateHasChanged();
+        }
+    }
 
     private async Task HandleLogin()
     {
+        if (!isInitialized)
+        {
+            errorMessage = "Espera un momento...";
+            return;
+        }
+
         try
         {
             isLoading = true;
@@ -90,8 +107,11 @@
             await LocalStorage.SetItemAsync("playerId", playerId);
             await LocalStorage.SetItemAsync("playerName", $"Jugador {playerId}");
 
+            // Pequeño delay para asegurar que se guardó
+            await Task.Delay(500);
+
             // Redirigir al juego
-            NavManager.NavigateTo("/game");
+            NavManager.NavigateTo("/game", forceLoad: true);
         }
         catch (Exception ex)
         {
