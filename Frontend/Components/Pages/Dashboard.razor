@@ -1,8 +1,10 @@
 ﻿@page "/dashboard"
+@rendermode InteractiveServer
 @using PicasYFamas.BlazorApp.Components.Models
 @using PicasYFamas.BlazorApp.Components.Services
 @inject IGameApiService ApiService
 @inject IJSRuntime JSRuntime
+@inject ILogger<Dashboard> _logger
 
 <PageTitle>Dashboard - Picas y Famas</PageTitle>
 
@@ -263,6 +265,8 @@
         if (firstRender)
         {
             await LoadDashboardData();
+            // Llamar RenderCharts después de cargar los datos y actualizar UI
+            StateHasChanged();
         }
     }
 
@@ -271,21 +275,23 @@
         try
         {
             isLoading = true;
+            StateHasChanged(); // Forzar actualización para mostrar spinner
 
             dashboardData = await ApiService.GetDashboardDataAsync();
 
             errorMessage = null;
-            StateHasChanged();
+            isLoading = false;
+            StateHasChanged(); // Actualizar UI con datos
 
-            // Renderizar gráficos después de cargar los datos
+            // Esperar a que el DOM se actualice completamente
+            await Task.Delay(500);
+
+            // Renderizar gráficos
             await RenderCharts();
         }
         catch (Exception ex)
         {
             errorMessage = $"Error al cargar datos: {ex.Message}";
-        }
-        finally
-        {
             isLoading = false;
             StateHasChanged();
         }
@@ -293,79 +299,128 @@
 
     private async Task RenderCharts()
     {
-        // Preparar datos para gráfico de usuarios
-        var usersData = new
+        try
         {
-            labels = dashboardData.UsersPerDay.Select(u => u.Date).ToArray(),
-            datasets = new[]
-            {
-                new
-                {
-                    label = "Usuarios Registrados",
-                    data = dashboardData.UsersPerDay.Select(u => u.Count).ToArray(),
-                    backgroundColor = "rgba(102, 126, 234, 0.6)",
-                    borderColor = "rgb(102, 126, 234)",
-                    borderWidth = 2,
-                    fill = true
-                }
-            }
-        };
+            _logger.LogInformation("Iniciando renderizado de gráficos...");
 
-        // Preparar datos para top 5 juegos
-        var topGamesData = new
-        {
-            labels = dashboardData.Top5Games.Select(g => $"Juego #{g.GameId} - {g.PlayerName}").ToArray(),
-            datasets = new[]
-            {
-                new
+            var today = DateTime.UtcNow.Date;
+            var last7Days = Enumerable.Range(0, 7)
+                .Select(i => today.AddDays(-6 + i))
+                .ToList();
+
+            var userDataComplete = last7Days
+                .Select(day => new UserRegistrationByDay
                 {
-                    label = "Intentos",
-                    data = dashboardData.Top5Games.Select(g => g.Attempts).ToArray(),
-                    backgroundColor = new[]
+                    Date = day.ToString("dd/MM"),
+                    Count = dashboardData.UsersPerDay
+                        .FirstOrDefault(u => DateTime.TryParse(u.Date, out var d) && d.Date == day.Date)?.Count ?? 0
+                })
+                .ToList();
+
+            // Preparar datos para gráfico de usuarios
+            var usersLabels = userDataComplete.Select(u => u.Date).ToArray();
+            var usersData = userDataComplete.Select(u => u.Count).ToArray();
+
+            var usersChartData = new
+            {
+                labels = usersLabels,
+                datasets = new[]
+                {
+                    new
                     {
-                        "rgba(17, 153, 142, 0.8)",
-                        "rgba(56, 239, 125, 0.8)",
-                        "rgba(102, 126, 234, 0.8)",
-                        "rgba(240, 147, 251, 0.8)",
-                        "rgba(245, 87, 108, 0.8)"
+                        label = "Usuarios Registrados",
+                        data = usersData,
+                        backgroundColor = "rgba(17, 153, 142, 0.6)",
+                        borderColor = "rgb(17, 153, 142)",
+                        borderWidth = 2,
+                        fill = true,
+                        tension = 0.4
                     }
                 }
-            }
-        };
+            };
 
-        // Preparar datos para distribución
-        var attemptsGroups = dashboardData.AttemptsPerGame
-            .Where(g => g.Status == "Finalizado")
-            .GroupBy(g =>
-            {
-                if (g.Attempts <= 5) return "1-5 intentos";
-                if (g.Attempts <= 10) return "6-10 intentos";
-                if (g.Attempts <= 15) return "11-15 intentos";
-                return "Más de 15";
-            })
-            .Select(g => new { Range = g.Key, Count = g.Count() })
-            .ToList();
+            // Preparar datos para top 5 juegos
+            var topGamesLabels = dashboardData.Top5Games.Any()
+                ? dashboardData.Top5Games.Select(g => $"Juego #{g.GameId} - {g.PlayerName}").ToArray()
+                : new[] { "Sin datos" };
 
-        var distributionData = new
-        {
-            labels = attemptsGroups.Select(g => g.Range).ToArray(),
-            datasets = new[]
+            var topGamesDataValues = dashboardData.Top5Games.Any()
+                ? dashboardData.Top5Games.Select(g => g.Attempts).ToArray()
+                : new[] { 0 };
+
+            var topGamesData = new
             {
-                new
+                labels = topGamesLabels,
+                datasets = new[]
                 {
-                    data = attemptsGroups.Select(g => g.Count).ToArray(),
-                    backgroundColor = new[]
+                    new
                     {
-                        "rgba(17, 153, 142, 0.8)",
-                        "rgba(102, 126, 234, 0.8)",
-                        "rgba(240, 147, 251, 0.8)",
-                        "rgba(245, 87, 108, 0.8)"
+                        label = "Intentos",
+                        data = topGamesDataValues,
+                        backgroundColor = new[]
+                        {
+                            "rgba(17, 153, 142, 0.8)",
+                            "rgba(56, 239, 125, 0.8)",
+                            "rgba(102, 126, 234, 0.8)",
+                            "rgba(240, 147, 251, 0.8)",
+                            "rgba(245, 87, 108, 0.8)"
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        await JSRuntime.InvokeVoidAsync("renderCharts", usersData, topGamesData, distributionData);
+            // Preparar datos para distribución
+            var finishedGames = dashboardData.AttemptsPerGame
+                .Where(g => g.Status == "Finalizado")
+                .ToList();
+
+            List<dynamic> attemptsGroups = finishedGames.Any()
+                ? finishedGames
+                    .GroupBy(g =>
+                    {
+                        if (g.Attempts <= 5) return "1-5 intentos";
+                        if (g.Attempts <= 10) return "6-10 intentos";
+                        if (g.Attempts <= 15) return "11-15 intentos";
+                        return "Más de 15";
+                    })
+                    .Select(g => (dynamic)new { Range = g.Key, Count = g.Count() })
+                    .ToList()
+                : new List<dynamic> { new { Range = "Sin datos", Count = 0 } };
+
+            var distributionLabels = attemptsGroups.Select(g => g.Range).ToArray();
+            var distributionDataValues = attemptsGroups.Select(g => g.Count).ToArray();
+
+            var distributionData = new
+            {
+                labels = distributionLabels,
+                datasets = new[]
+                {
+                    new
+                    {
+                        data = distributionDataValues,
+                        backgroundColor = new[]
+                        {
+                            "rgba(17, 153, 142, 0.8)",
+                            "rgba(102, 126, 234, 0.8)",
+                            "rgba(240, 147, 251, 0.8)",
+                            "rgba(245, 87, 108, 0.8)"
+                        }
+                    }
+                }
+            };
+
+            _logger.LogInformation("Datos preparados, llamando a renderCharts JS...");
+
+            // Renderizar los gráficos
+            await JSRuntime.InvokeVoidAsync("renderCharts", usersChartData, topGamesData, distributionData);
+
+            _logger.LogInformation("Llamada a renderCharts completada");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al renderizar gráficos: {ex.Message}";
+            _logger.LogError(ex, "Error rendering charts");
+        }
     }
 
     private string GetAttemptBadgeClass(int attempts)

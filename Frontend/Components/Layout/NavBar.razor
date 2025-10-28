@@ -4,51 +4,103 @@
             <i class="bi bi-puzzle-fill me-2"></i>Picas y Famas
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
-                        <i class="bi bi-house-fill me-1"></i> Inicio
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesión
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
-                        <i class="bi bi-person-plus-fill me-1"></i> Registro
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/game" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
-                        <i class="bi bi-controller me-1"></i> Jugar
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
-                        <i class="bi bi-graph-up-arrow me-1"></i> Dashboard
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav ms-auto flex-row">
+            <li class="nav-item">
+                <a class="nav-link" href="/" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
+                    <i class="bi bi-house-fill me-1"></i> Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
+                    <i class="bi bi-person-plus-fill me-1"></i> Registro
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/game" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
+                    <i class="bi bi-controller me-1"></i> Jugar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard" style="padding: 10px 20px; border-radius: 10px; margin: 0 5px; transition: all 0.3s;">
+                    <i class="bi bi-graph-up-arrow me-1"></i> Dashboard
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>
 
 <style>
-    .nav-link:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
-        transform: translateY(-2px);
+    .nav-link {
+        white-space: nowrap;
     }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-2px);
+        }
 
     .navbar-brand:hover {
         transform: scale(1.05);
         transition: transform 0.3s;
     }
+
+    /* Responsive para móviles */
+    /* añadir arroba delante de media
+    media (max-width: 992px) {
+        .navbar-nav 
+    */
+
+    {
+        flex-direction: column !important;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        width: 100%;
+        margin: 2px 0 !important;
+    }
+
+    /* Botón hamburguesa */
+    .navbar-toggler {
+        display: block;
+        border: 2px solid white;
+        padding: 0.5rem;
+    }
+
+    }
+    /* añadir arroba delante de media
+    media (min-width: 993px) {
+        .navbar-toggler 
+    */
+
+    {
+        display: none;
+    }
+
+    }
 </style>
+
+@* Agregar funcionalidad de colapso con JavaScript puro *@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggler = document.querySelector('.navbar-toggler');
+        const menu = document.querySelector('.navbar-nav');
+
+        if (toggler && menu) {
+            toggler.addEventListener('click', function() {
+                menu.classList.toggle('show');
+            });
+        }
+    });
+</script>

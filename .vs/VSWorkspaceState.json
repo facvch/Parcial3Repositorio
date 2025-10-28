@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\Backend\\Infrastructure",
+    "\\Backend\\Infrastructure\\Repositories",
+    "\\Backend\\Infrastructure\\Repositories\\Mongo"
+  ],
+  "SelectedNode": "\\Backend\\Infrastructure\\Repositories\\Mongo\\StoreDbContext.cs",
+  "PreviewInSolutionExplorer": false
+}

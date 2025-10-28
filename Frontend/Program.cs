@@ -1,6 +1,6 @@
-using Blazored.LocalStorage;
 using PicasYFamas.BlazorApp.Components;
 using PicasYFamas.BlazorApp.Components.Services;
+using Blazored.LocalStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 

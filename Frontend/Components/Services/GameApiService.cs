@@ -1,7 +1,20 @@
 ﻿using PicasYFamas.BlazorApp.Components.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace PicasYFamas.BlazorApp.Components.Services
 {
+    public interface IGameApiService
+    {
+        Task<RegisterPlayerResponse> RegisterPlayerAsync(RegisterPlayerRequest request);
+        Task<StartGameResponse> StartGameAsync(StartGameRequest request);
+        Task<GuessNumberResponse> GuessNumberAsync(GuessNumberRequest request);
+        Task<DashboardData> GetDashboardDataAsync();
+    }
+
     public class GameApiService : IGameApiService
     {
         private readonly HttpClient _httpClient;
@@ -84,20 +97,20 @@ namespace PicasYFamas.BlazorApp.Components.Services
         {
             try
             {
-                // Obtener datos de los diferentes endpoints del dashboard
-                var statsTask = _httpClient.GetFromJsonAsync<ApiResponse<DashboardStats>>("api/dashboard/v1/stats");
-                var usersTask = _httpClient.GetFromJsonAsync<ApiResponse<List<UserRegistrationByDay>>>("api/dashboard/v1/users-per-day?days=7");
-                var top5Task = _httpClient.GetFromJsonAsync<ApiResponse<List<TopGame>>>("api/dashboard/v1/top5-games");
-                var gamesTask = _httpClient.GetFromJsonAsync<ApiResponse<List<GameAttempts>>>("api/dashboard/v1/games-attempts");
+                // DashboardController usa ControllerBase, devuelve datos sin wrapper
+                var statsTask = _httpClient.GetFromJsonAsync<DashboardStats>("api/dashboard/v1/stats");
+                var usersTask = _httpClient.GetFromJsonAsync<List<UserRegistrationByDay>>("api/dashboard/v1/users-per-day?days=7");
+                var top5Task = _httpClient.GetFromJsonAsync<List<TopGame>>("api/dashboard/v1/top5-games");
+                var gamesTask = _httpClient.GetFromJsonAsync<List<GameAttempts>>("api/dashboard/v1/games-attempts");
 
                 await Task.WhenAll(statsTask, usersTask, top5Task, gamesTask);
 
                 return new DashboardData
                 {
-                    Stats = statsTask.Result?.Data ?? new DashboardStats(),
-                    UsersPerDay = usersTask.Result?.Data ?? new List<UserRegistrationByDay>(),
-                    Top5Games = top5Task.Result?.Data ?? new List<TopGame>(),
-                    AttemptsPerGame = gamesTask.Result?.Data ?? new List<GameAttempts>()
+                    Stats = statsTask.Result ?? new DashboardStats(),
+                    UsersPerDay = usersTask.Result ?? new List<UserRegistrationByDay>(),
+                    Top5Games = top5Task.Result ?? new List<TopGame>(),
+                    AttemptsPerGame = gamesTask.Result ?? new List<GameAttempts>()
                 };
             }
             catch (Exception ex)
