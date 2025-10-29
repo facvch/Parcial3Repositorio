@@ -15,7 +15,6 @@ namespace Domain.Entities
         public DateTime CreatedAt { get; set; }
         public GameStatus Status { get; set; }
 
-        // Navegación
         public virtual Player Player { get; set; }
         public virtual ICollection<Attempt> Attempts { get; set; }
 

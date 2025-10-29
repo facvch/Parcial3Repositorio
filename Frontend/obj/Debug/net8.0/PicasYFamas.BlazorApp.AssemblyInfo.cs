@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PicasYFamas.BlazorApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12797cca31f7c4bb343bace5c103ee23e3bfcb4c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e5c400a88cdb39d3b0ef7fc29ffe5711cbdf93d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PicasYFamas.BlazorApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PicasYFamas.BlazorApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

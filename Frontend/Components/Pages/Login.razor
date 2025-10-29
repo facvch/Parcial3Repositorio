@@ -103,14 +103,11 @@
                 return;
             }
 
-            // Guardar en LocalStorage
             await LocalStorage.SetItemAsync("playerId", playerId);
             await LocalStorage.SetItemAsync("playerName", $"Jugador {playerId}");
 
-            // Pequeño delay para asegurar que se guardó
             await Task.Delay(500);
 
-            // Redirigir al juego
             NavManager.NavigateTo("/game", forceLoad: true);
         }
         catch (Exception ex)

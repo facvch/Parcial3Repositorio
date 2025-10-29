@@ -97,7 +97,6 @@ namespace PicasYFamas.BlazorApp.Services
         {
             try
             {
-                // Obtener datos de los diferentes endpoints del dashboard
                 var statsTask = _httpClient.GetFromJsonAsync<ApiResponse<DashboardStats>>("api/dashboard/v1/stats");
                 var usersTask = _httpClient.GetFromJsonAsync<ApiResponse<List<UserRegistrationByDay>>>("api/dashboard/v1/users-per-day?days=7");
                 var top5Task = _httpClient.GetFromJsonAsync<ApiResponse<List<TopGame>>>("api/dashboard/v1/top5-games");

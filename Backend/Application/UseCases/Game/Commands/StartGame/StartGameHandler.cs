@@ -29,11 +29,9 @@ namespace Application.UseCases.Game.Commands.StartGame
         {
             _logger.LogInformation("Iniciando nuevo juego para PlayerId: {PlayerId}", request.PlayerId);
 
-            // Validar que el PlayerId sea válido
             if (request.PlayerId <= 0)
                 throw new BadRequestException("El ID del jugador debe ser mayor a 0");
 
-            // Verificar que el jugador exista
             var player = await _playerRepository.GetByIdAsync(request.PlayerId);
             if (player == null)
             {
@@ -41,7 +39,6 @@ namespace Application.UseCases.Game.Commands.StartGame
                 throw new NotFoundException($"El jugador con ID {request.PlayerId} no existe");
             }
 
-            // Verificar si el jugador tiene un juego activo
             var activeGame = await _gameRepository.GetActiveGameByPlayerIdAsync(request.PlayerId);
             if (activeGame != null)
             {
@@ -50,11 +47,9 @@ namespace Application.UseCases.Game.Commands.StartGame
                 throw new BadRequestException($"Ya tienes un juego activo (ID: {activeGame.GameId}). Debes finalizarlo antes de iniciar uno nuevo.");
             }
 
-            // Generar número secreto de 4 dígitos sin repetir
             var secretNumber = GenerateSecretNumber();
             _logger.LogInformation("Número secreto generado para juego (no mostrar en producción): {SecretNumber}", secretNumber);
 
-            // Crear nuevo juego
             var game = new Domain.Entities.Game
             {
                 PlayerId = request.PlayerId,

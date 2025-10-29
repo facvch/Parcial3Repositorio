@@ -3,40 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\wwwroot\\js\\charts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:wwwroot\\js\\charts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\services\\gameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\services\\gameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\services\\igameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\services\\igameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\layout\\navbar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\layout\\navbar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\models\\blazorfrontenddtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\models\\blazorfrontenddtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\services\\igameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\services\\igameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\services\\gameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\services\\gameapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,24 +47,24 @@
       "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\game.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\game.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\models\\blazorfrontenddtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\models\\blazorfrontenddtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|c:\\users\\facul\\source\\repos\\github\\parcial3repositorio\\frontend\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E976C28C-495F-4F0E-8C48-C49D61245604}|PicasYFamas.BlazorApp.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,20 +82,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "charts.js",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\wwwroot\\js\\charts.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\charts.js",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\wwwroot\\js\\charts.js",
               "RelativeToolTip": "wwwroot\\js\\charts.js",
-              "ViewState": "AgIAABoAAAAAAAAAAAAQwCEAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-10-28T02:38:40.552Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
@@ -103,23 +103,25 @@
               "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T18:00:43.802Z"
+              "WhenOpened": "2025-10-18T18:00:43.802Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "NavBar.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Layout\\NavBar.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\NavBar.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Layout\\NavBar.razor",
               "RelativeToolTip": "Components\\Layout\\NavBar.razor",
-              "ViewState": "AgIAABwAAAAAAAAAAAAEwB4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T18:00:36.887Z"
+              "WhenOpened": "2025-10-18T18:00:36.887Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
@@ -127,19 +129,21 @@
               "RelativeToolTip": "wwwroot\\css\\site.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-18T16:24:45.377Z"
+              "WhenOpened": "2025-10-18T16:24:45.377Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 4,
               "Title": "_Host.cshtml",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\_Host.cshtml",
               "RelativeDocumentMoniker": "Components\\Pages\\_Host.cshtml",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\_Host.cshtml",
               "RelativeToolTip": "Components\\Pages\\_Host.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T16:03:40.84Z"
+              "WhenOpened": "2025-10-18T16:03:40.84Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -149,58 +153,62 @@
               "RelativeDocumentMoniker": "Components\\_Imports.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\_Imports.razor",
               "RelativeToolTip": "Components\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T15:59:45.259Z"
+              "WhenOpened": "2025-10-18T15:59:45.259Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "Login.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Login.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Login.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Login.razor",
               "RelativeToolTip": "Components\\Pages\\Login.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T17:59:33.419Z"
+              "WhenOpened": "2025-10-18T17:59:33.419Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Game.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Game.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Game.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Game.razor",
               "RelativeToolTip": "Components\\Pages\\Game.razor",
-              "ViewState": "AgIAACcBAAAAAAAAAAAUwGABAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T06:27:41.634Z"
+              "WhenOpened": "2025-10-18T06:27:41.634Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 12,
               "Title": "Dashboard.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Dashboard.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Dashboard.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Dashboard.razor",
               "RelativeToolTip": "Components\\Pages\\Dashboard.razor",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAAAD8BAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-18T06:27:19.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 11,
               "Title": "Register.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Register.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Register.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Register.razor",
               "RelativeToolTip": "Components\\Pages\\Register.razor",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAUwIIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T06:25:50.365Z"
+              "WhenOpened": "2025-10-18T06:25:50.365Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -210,9 +218,10 @@
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAIwIYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-18T06:25:28.166Z"
+              "WhenOpened": "2025-10-18T06:25:28.166Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -222,49 +231,53 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T06:17:26.257Z"
+              "WhenOpened": "2025-10-18T06:17:26.257Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "GameApiService.cs",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Services\\GameApiService.cs",
               "RelativeDocumentMoniker": "Components\\Services\\GameApiService.cs",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Services\\GameApiService.cs",
               "RelativeToolTip": "Components\\Services\\GameApiService.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAiwHkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T06:23:05.818Z"
+              "WhenOpened": "2025-10-18T06:23:05.818Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "IGameApiService.cs",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Services\\IGameApiService.cs",
               "RelativeDocumentMoniker": "Components\\Services\\IGameApiService.cs",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Services\\IGameApiService.cs",
               "RelativeToolTip": "Components\\Services\\IGameApiService.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAUwHkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T06:11:49.468Z"
+              "WhenOpened": "2025-10-18T06:11:49.468Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 6,
               "Title": "BlazorFrontendDtos.cs",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Models\\BlazorFrontendDtos.cs",
               "RelativeDocumentMoniker": "Components\\Models\\BlazorFrontendDtos.cs",
               "ToolTip": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\Models\\BlazorFrontendDtos.cs",
               "RelativeToolTip": "Components\\Models\\BlazorFrontendDtos.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAcwDgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T06:14:32.148Z"
+              "WhenOpened": "2025-10-18T06:14:32.148Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\facul\\source\\repos\\GitHub\\Parcial3Repositorio\\Frontend\\Components\\App.razor",
               "RelativeDocumentMoniker": "Components\\App.razor",

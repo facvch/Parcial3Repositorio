@@ -42,7 +42,7 @@ namespace Infrastructure.Factories
             var context = services.BuildServiceProvider().GetRequiredService<Repositories.Sql.StoreDbContext>();
             context.Database.Migrate();
 
-            /* Sql Repositories (Utiliza los mismos de sql)*/
+            // Sql Repositories (Utiliza los mismos de sql)
             services.AddTransient<IPlayerRepository, Repositories.Sql.PlayerRepository>();
             services.AddTransient<IGameRepository, Repositories.Sql.GameRepository>();
             services.AddTransient<IAttemptRepository, Repositories.Sql.AttemptRepository>();
@@ -61,7 +61,7 @@ namespace Infrastructure.Factories
             var context = services.BuildServiceProvider().GetRequiredService<Repositories.Sql.StoreDbContext>();
             context.Database.Migrate();
 
-            /* Sql Repositories */
+            // Sql Repositories
             services.AddTransient<IPlayerRepository, Repositories.Sql.PlayerRepository>();
             services.AddTransient<IGameRepository, Repositories.Sql.GameRepository>();
             services.AddTransient<IAttemptRepository, Repositories.Sql.AttemptRepository>();
@@ -76,7 +76,7 @@ namespace Infrastructure.Factories
             Repositories.Mongo.StoreDbContext db = new(configuration.GetConnectionString("MongoConnection") ?? throw new NullReferenceException());
             services.AddSingleton(typeof(Repositories.Mongo.StoreDbContext), db);
 
-            /* MongoDb Repositories */
+            // MongoDb Repositories
 
             return services;
         }

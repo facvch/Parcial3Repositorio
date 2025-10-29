@@ -16,7 +16,6 @@ namespace Domain.Entities
         public string Message { get; set; }
         public DateTime AttemptDate { get; set; }
 
-        // Navegación
         public virtual Game Game { get; set; }
 
         public Attempt()

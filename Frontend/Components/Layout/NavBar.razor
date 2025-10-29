@@ -49,12 +49,6 @@
         transition: transform 0.3s;
     }
 
-    /* Responsive para móviles */
-    /* añadir arroba delante de media
-    media (max-width: 992px) {
-        .navbar-nav 
-    */
-
     {
         flex-direction: column !important;
         align-items: flex-start;
@@ -71,7 +65,6 @@
         margin: 2px 0 !important;
     }
 
-    /* Botón hamburguesa */
     .navbar-toggler {
         display: block;
         border: 2px solid white;
@@ -79,10 +72,6 @@
     }
 
     }
-    /* añadir arroba delante de media
-    media (min-width: 993px) {
-        .navbar-toggler 
-    */
 
     {
         display: none;
@@ -91,7 +80,6 @@
     }
 </style>
 
-@* Agregar funcionalidad de colapso con JavaScript puro *@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const toggler = document.querySelector('.navbar-toggler');

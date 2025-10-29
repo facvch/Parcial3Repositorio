@@ -97,7 +97,6 @@ namespace PicasYFamas.BlazorApp.Components.Services
         {
             try
             {
-                // DashboardController usa ControllerBase, devuelve datos sin wrapper
                 var statsTask = _httpClient.GetFromJsonAsync<DashboardStats>("api/dashboard/v1/stats");
                 var usersTask = _httpClient.GetFromJsonAsync<List<UserRegistrationByDay>>("api/dashboard/v1/users-per-day?days=7");
                 var top5Task = _httpClient.GetFromJsonAsync<List<TopGame>>("api/dashboard/v1/top5-games");

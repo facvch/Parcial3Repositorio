@@ -27,7 +27,6 @@ namespace Application.UseCases.Player.Commands.RegisterPlayer
             _logger.LogInformation("Iniciando registro de jugador: {FirstName} {LastName}",
                 request.FirstName, request.LastName);
 
-            // Validar que los campos requeridos estén presentes
             if (string.IsNullOrWhiteSpace(request.FirstName))
                 throw new BadRequestException("El nombre es requerido");
 
@@ -37,7 +36,6 @@ namespace Application.UseCases.Player.Commands.RegisterPlayer
             if (request.Age <= 0)
                 throw new BadRequestException("La edad debe ser mayor a 0");
 
-            // Verificar si el jugador ya existe
             var existingPlayer = await _playerRepository.GetByNameAsync(request.FirstName, request.LastName);
             if (existingPlayer != null)
             {
@@ -46,7 +44,6 @@ namespace Application.UseCases.Player.Commands.RegisterPlayer
                 throw new BadRequestException("El jugador ya se encuentra registrado");
             }
 
-            // Crear nuevo jugador
             var player = new Domain.Entities.Player
             {
                 FirstName = request.FirstName,

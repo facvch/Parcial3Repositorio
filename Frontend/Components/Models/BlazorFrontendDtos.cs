@@ -1,6 +1,6 @@
 ﻿namespace PicasYFamas.BlazorApp.Components.Models
 {
-    // Request/Response Models
+    // Request/Response
     public class RegisterPlayerRequest
     {
         public string FirstName { get; set; }
@@ -54,7 +54,7 @@
         public int StatusCode { get; set; }
     }
 
-    // Dashboard Models
+    // Dashboard
     public class DashboardData
     {
         public DashboardStats Stats { get; set; }

@@ -74,7 +74,6 @@ namespace API
         private void UseEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            // Aqui se registran las subscripciones a eventos del bus de eventos, vinculando eventos con sus respectivos handlers
         }
     }
 }

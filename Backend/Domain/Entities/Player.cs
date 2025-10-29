@@ -14,7 +14,6 @@ namespace Domain.Entities
         public int Age { get; set; }
         public DateTime RegistrationDate { get; set; }
 
-        // Navegación
         public virtual ICollection<Game> Games { get; set; }
 
         public Player()
